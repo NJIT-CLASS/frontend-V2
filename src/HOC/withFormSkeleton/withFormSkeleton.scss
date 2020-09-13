@@ -1,0 +1,40 @@
+@import "../../shared/styles/variables";
+@import "../../shared/styles/section";
+
+.form-container {
+  text-align: center;
+
+  .paper{
+    width: 100%;
+    //margin-bottom: 1rem;
+    padding: 1rem;
+  }
+
+  h2 {
+    font-size: 40px;
+    color: #2E4051;
+    margin: 2rem 0;
+    font-weight: bold;
+
+    i {
+      display: block;
+      /* change font size for smaller phones*/
+      font-size:10vh;
+      margin-bottom: 15px;
+    }
+  }
+
+  p {
+    font-style: italic;
+  }
+
+  .link{
+    text-decoration: none;
+    color: #00e7bd;
+
+    &.link:hover {
+      color: #00AB8D;
+      cursor: pointer;
+    }
+  }
+}

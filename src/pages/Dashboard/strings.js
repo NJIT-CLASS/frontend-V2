@@ -1,0 +1,31 @@
+export default {
+    CurrentCourses: 'Current Courses',
+    NoCourses: 'You currently have no registered courses',
+    Assignment: 'Assignment',
+    Type: 'Type',
+    Course: 'Course',
+    DueDate: 'Due Date',
+    PendingTasks: 'Pending Tasks',
+    CompletedTasks: 'Completed Tasks',
+    EndDate: 'Date Submitted',
+    NoCompleted: 'No completed tasks',
+    NoPending: 'No pending tasks',
+    Revised: 'Revised',
+    Revision: 'Revision',
+    Notifications: 'Notifications',
+    NoNotifications: 'You currently have no notifications',
+    OldNotifications: 'Old Notifications',
+    RedHeader: 'Tasks in Red are considered late',
+    CodeHeader:'Code(s)',
+    CodeTooltipExplanation: 'Task Codes: “#1” Must complete this task before doing other tasks “!” Late Task',
+
+    // notification component && old notifications component
+    CommentText: 'You have a new comment on ',
+    InText: ' in ',
+    VolunteerPoolText: 'There has been a change in the volunteer status for ',
+    SectionText: ' - Section ',
+    NewStatusText: '. The new status is ',
+    RequestCancelledText: 'Request Cancelled',
+    ForText: ' for ',
+    LinkInvalidText: 'Link No Longer Valid'
+};

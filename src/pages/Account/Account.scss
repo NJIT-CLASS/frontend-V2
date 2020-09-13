@@ -1,0 +1,25 @@
+.account-table{
+  table {
+    width: 50%;
+    border: 1px solid #000;
+    border-bottom: 0 solid black;
+  }
+
+  th, td {
+    width: 25%;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid #000;
+    border-collapse: collapse;
+    padding: 0.3em;
+    caption-side: bottom;
+  }
+
+  caption {
+    padding: 0.3em;
+  }
+
+  b {
+    font-weight: bold;
+  }
+}
