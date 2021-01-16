@@ -1,12 +1,18 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+import {useDispatch, useSelector} from 'react-redux'
+
 import PLSideDrawer from "../../shared/PLSideDrawer/PLSideDrawer";
 import PLNavbar from "../../shared/PLNavbar/PLNavbar";
 
+import * as actionTypes from "../../store/actions";
+
 import routes from "../../routes/routes";
+import shallowEqual from "react-redux/lib/utils/shallowEqual";
+import makeNotification from "../../utils/NotificationFactory";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,11 +53,18 @@ const withSignedInSkeleton = (WrappedPage, name) => {
     return (props) => {
         const classes = useStyles();
         const [open, setOpen] = React.useState(routes[name].sideBarOpen);
+        const notification = useSelector(state => state.notification.notification, shallowEqual);
+        const dispatch = useDispatch();
 
 
         const handleToggleOpen = () => {
             open ? setOpen(false): setOpen(true);
         };
+
+        const clearNotification = useCallback(
+            () => dispatch({type: actionTypes.CLEAR_NOTIFICATION}),
+            [dispatch]
+        );
 
         document.title = `${routes[name].title} | PL System`;
 
@@ -63,6 +76,8 @@ const withSignedInSkeleton = (WrappedPage, name) => {
                     userName={"Zoraiz Naeem"}
                     pageName={routes[name].title}
                     handleToggleOpen={handleToggleOpen}
+                    notification={notification}
+                    clearNotification={clearNotification}
                 />
 
                 <PLSideDrawer
