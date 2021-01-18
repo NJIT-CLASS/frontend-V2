@@ -123,6 +123,22 @@ const routes =  {
         logo: "fa fa-edit",
     },
 
+    "UserManagement": {
+        title: 'User Management',
+        path: '/user-management',
+        access: {
+            admins: true,
+            instructors: false,
+            students: false,
+            role: ROLES.ADMIN,
+            loggedOut: false
+        },
+        template: true,
+        sideBarOpen: false,
+        logo: "fa fa-cogs",
+
+    },
+
     "QuickAssignmentReport": {
         title: 'Assignment Status',
         path: "/assignment-record/:assignmentId",

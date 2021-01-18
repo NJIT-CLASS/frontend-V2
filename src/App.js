@@ -8,7 +8,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import About from "./pages/About/About";
 import AboutUs from "./pages/About/About-loggedin";
 // import Account from "./pages/Account/Account";
-import AssignmentEditor from "./pages/AssignmentEditor/AssignmentEditor";
+// import AssignmentEditor from "./pages/AssignmentEditor/AssignmentEditor";
 import Login from "./pages/Login/Login";
 import InitialPasswordChange from  "./pages/InitialPasswordChange/InitialPasswordChange"
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
@@ -16,6 +16,7 @@ import Assignments from "./pages/Assignments/Assignments"
 import EveryonesWork from "./pages/EveryonesWork/EveryonesWork"
 import QuickAssignmentReport from "./pages/QuickAssignmentReport/QuickAssignmentReport";
 import CourseSectionManagement from "./pages/CourseSectionManagement/CourseSectionManagement";
+import UserManagement from "./pages/UserManagement/UserManagement";
 
 
 const App = () => {
@@ -31,8 +32,8 @@ const App = () => {
                     <Route path={routes.EveryonesWork.path} render={() => <EveryonesWork {...routes.EveryonesWork} UserID={userId} />} exact />
                     {/*<Route path={routes.Account.path} render={() => <Account {...routes.EveryonesWork} UserID={userId} />} exact />*/}
                     <Route path={routes.CourseSectionManagement.path} render={() => <CourseSectionManagement {...routes.CourseSectionManagement} UserID={userId} />} exact />
-                    <Route path={routes.AssignmentEditor.path} render={() => <AssignmentEditor {...routes.AssignmentEditor} UserID={userId} />} exact />
-
+                    {/*<Route path={routes.AssignmentEditor.path} render={() => <AssignmentEditor {...routes.AssignmentEditor} UserID={userId} />} exact />*/}
+                    <Route path={routes.UserManagement.path} render={() => <UserManagement {...routes.UserManagement} UserID={userId} />} exact />
 
                     <Route path={routes.QuickAssignmentReport.path} render={() => <QuickAssignmentReport {...routes.QuickAssignmentReport} hasInstructorPrivilege />} exact />
                     <Route path={routes.About.path} render={() => <About {...routes.About} />} exact />
