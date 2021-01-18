@@ -185,6 +185,12 @@ class ManageUserTable extends React.Component {
                                 accessor: 'resetPassword',
                                 style: td_styles
                             },
+                            // {
+                            //     Header: strings.removeUser,
+                            //     accessor: 'removeUser',
+                            //     style: td_styles
+                            // },
+
                         ]}
                         noDataText={strings.noUsers}
                     />
