@@ -17,6 +17,7 @@
     "date-fns": "^2.15.0",
     "flat-to-nested": "^1.1.0",
     "formik": "^2.1.4",
+    "generate-password": "^1.6.0",
     "lodash": "latest",
     "moment": "^2.27.0",
     "node-sass": "^4.14.1",

@@ -22,13 +22,13 @@ class ManageUserTable extends React.Component {
             let userRole = user.Role;
             let lastLogin = user.UserLogin.LastLogin;
 
-            const selectOptions = [{value: "Admin", label: strings.admin}, {
-                value: "Enhanced",
-                label: strings.enhanced
-            }, {value: "Participant", label: strings.participant}, {
-                value: "Guest",
-                label: strings.guest
-            }, {value: "Teacher", label: "Teacher"}];
+            const selectOptions = [
+                {value: "Admin", label: strings.admin},
+                {value: "Enhanced", label: strings.enhanced},
+                {value: "Participant", label: strings.participant},
+                {value: "Guest", label: strings.guest},
+                {value: "Teacher", label: "Teacher"}
+            ];
 
             timeout = timeout ? moment(timeout).format("yyyy-mm-dd HH-MM-ss") : "-";
             isTestUser = isTestUser ? "Yes" : "No";

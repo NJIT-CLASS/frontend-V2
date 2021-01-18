@@ -3,15 +3,14 @@ import React, {Component} from 'react';
 import strings from './strings';
 import axios from 'axios';
 
-import PLSelect from "../../shared/PLSelect/PLSelect";
 import withSignedInSkeleton from "../../HOC/withSignedInSkeleton/withSignedInSkeleton";
 import PLSpinner from "../../shared/PLSpinner/PLSpinner";
-import PLButton from "../../shared/PLButton/PLButton";
 
 import ManageUserTable from "./components/ManageUserTable";
 import Alert from "@material-ui/lab/Alert";
 import {ERROR, SUCCESSFUL} from "../../constants/NOTIFICATION_TYPES";
 import InviteAdministratorForm from "./components/InviteAdministratorForm";
+import CreateTestUserForm from "./components/CreateTestUserForm";
 
 class UserManagement extends Component{
 
@@ -160,7 +159,7 @@ class UserManagement extends Component{
         });
     }
 
-    createTestUser(){
+    handleCreateTestUser(){
         let testUserInfo = this.state.addTestUserData;
         let testRole = null;
         if(!testUserInfo.fn || !testUserInfo.ln || !testUserInfo.pw || !testUserInfo.access){
@@ -181,7 +180,7 @@ class UserManagement extends Component{
             organization:org};
 
         axios.post('/adduser', postData).then(response =>{
-            if(response.status === 200  && response.data["Message"] === "User has succesfully added"){
+            if(response.status === 200  && response.data["Message"] === "User has successfully added"){
                 this.componentData.addTestUserNotification = this.notification(SUCCESSFUL,"Test User Successfully Created");
             } else {
                 if(response.data["Message"] === "User is currently exist"){
@@ -194,7 +193,7 @@ class UserManagement extends Component{
         });
     }
 
-    inviteAdmin(){
+    handleInviteAdmin(){
         let adminInfo = this.state.addAdminUserData;
 
         if(!adminInfo.fn || !adminInfo.ln || !adminInfo.pw){
@@ -213,6 +212,8 @@ class UserManagement extends Component{
             Test:false,
             organization:org
         };
+
+        console.log(postData);
 
         axios.post('/adduser', postData).then(response => {
             if(response.status === 200  && response.data["Message"] === "User has succesfully added"){
@@ -234,16 +235,22 @@ class UserManagement extends Component{
 
     }
 
-    updateTestUserSelect(newValue){
-        this.state.addTestUserData.access = newValue.value;
-        this.state.addTestUserData.selectValue = newValue;
-        this.setState({addTestUserData:this.state.addTestUserData});
+    handleUpdateTestUserRole(event){
+        console.log(event)
+        this.state.addTestUserData.access = event.target.value;
+        this.state.addTestUserData.selectValue = event.target;
+        console.log(this.state);
+        this.setState({
+            addTestUserData:this.state.addTestUserData
+        });
     }
 
-    updateTestOrgSelect(newValue){
-        this.state.addTestUserData.organization = newValue.value;
-        this.state.addTestUserData.orgValue = newValue;
-        this.setState({addTestUserData:this.state.addTestUserData});
+    handleUpdateTestUserOrg(event){
+        this.state.addTestUserData.organization = event.target.value;
+        this.state.addTestUserData.orgValue = event.target;
+        this.setState({
+            addTestUserData:this.state.addTestUserData
+        });
     }
 
     updateAdminOrg(event){
@@ -331,13 +338,12 @@ class UserManagement extends Component{
             status = changeRoleNotification;
             this.state.changeUserRoleNotification = null;
         }
-        //=================================================================================================
-        // Total content returned
 
         return (
             <div>
                 <div>
                     <InviteAdministratorForm
+                        header={"Invite Administrator"}
                         organizations={this.state.organizations}
                         addAdminUserData={this.state.addAdminUserData}
                         notification={inviteAdminNotification}
@@ -345,25 +351,21 @@ class UserManagement extends Component{
                         onUpdateAdminOrg={this.updateAdminOrg.bind(this)}
                         onGeneratePassword={this.generatePassword.bind(this)}
                         onTogglePassword={this.handleToggleShowPassword.bind(this)}
+                        onInviteAdmin={this.handleInviteAdmin.bind(this)}
                     />
 
-                    {/*<form name="create_test_user" role="form" className="section" method="POST">*/}
-                    {/*    <label><h2 className="title">Create Test User</h2></label>*/}
-                    {/*    <div className="section-content" >*/}
-                    {/*        <table className="promote-instructor-table">*/}
-                    {/*            {addTestUserNotification}*/}
-                    {/*            <tbody>*/}
-                    {/*            <tr><td>Email* </td><td><input type="text" onChange={this.onFieldInput.bind(this,"addTestUserData","email")}/></td></tr>*/}
-                    {/*            <tr><td>First Name* </td><td><input type="text" onChange={this.onFieldInput.bind(this,"addTestUserData","fn")}/></td></tr>*/}
-                    {/*            <tr><td>Last Name* </td><td><input type="text" onChange={this.onFieldInput.bind(this,"addTestUserData","ln")}/></td></tr>*/}
-                    {/*            <tr><td>User Role* </td><td><PLSelect className="change-role-select" clearable={false} value={this.state.addTestUserData.selectValue} onChange={this.updateTestUserSelect.bind(this)} searchable={false} options={[{value:"Guest",label:"Guest"},{value:"Participant",label:"Participant"},{value:"Teacher",label:"Teacher"},{value:"Enhanced",label:"Enhanced"},{value:"Admin",label:"Admin"}]}/></td></tr>*/}
-                    {/*            <tr><td>Organization </td><td><PLSelect onChange={this.updateTestOrgSelect.bind(this)} clearable={false} searchable={false} value={this.state.addTestUserData.organization} options={this.state.organizations} /></td></tr>*/}
-                    {/*            <tr><td>Password* <button type="button" onClick={this.generatePassword.bind(this,"addTestUserData")}>Generate Password</button> Hide <input checked={this.state.addTestUserData.hidePW} onClick={this.toggleHidePW.bind(this,"addTestUserData")} type="radio" /> </td><td><input disabled={true} type={this.state.addTestUserData.pwInputType} value={this.state.addTestUserData.pw}  onChange={this.onFieldInput.bind(this,"addTestUserData","pw")}/></td></tr>*/}
-                    {/*            <tr><td/><td><button type="button" onClick={this.createTestUser.bind(this)}>Add</button></td></tr>*/}
-                    {/*            </tbody>*/}
-                    {/*        </table>*/}
-                    {/*    </div>*/}
-                    {/*</form>*/}
+                    <CreateTestUserForm
+                        header={"Create Test User"}
+                        organizations={this.state.organizations}
+                        addTestUserData={this.state.addTestUserData}
+                        notification={addTestUserNotification}
+                        onUpdateTestUserRole={this.handleUpdateTestUserRole.bind(this)}
+                        onUpdateTestUserOrg={this.handleUpdateTestUserOrg.bind(this)}
+                        onFieldInput={this.handleOnFieldInput.bind(this)}
+                        onGeneratePassword={this.generatePassword.bind(this)}
+                        onTogglePassword={this.handleToggleShowPassword.bind(this)}
+                        onAddUser={this.handleCreateTestUser.bind(this)}
+                    />
                 </div>
                 <div>
                     <ManageUserTable
