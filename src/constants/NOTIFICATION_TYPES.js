@@ -1,2 +1,2 @@
 export const ERROR = 'error';
-export const SUCCESSFUL = 'successful';
+export const SUCCESSFUL = 'success';
